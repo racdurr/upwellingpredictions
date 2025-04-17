@@ -78,7 +78,7 @@
 
 # Results and Summary
 ### Random Forest
-##### Results between spatial and non-spatial datasets in the random forest, slightly vary. From the spatial dataset, accuracy improves when upwelling occurs for when parameters are met for one or more days, potentially indicating overestimation (Fig.5). Similarly, non-spatial dataset also sees an improved accuracy when parameters are met for one or more days (Fig. 6). Wind in the North-South direction (wind_v) showcases to be the most important feature of all datasets and each parameter, from there it differs if sst or or u wind is the next more important feature (Fig. 5 and 6)
+##### Results between spatial and non-spatial datasets in the random forest, slightly vary. From the spatial dataset, accuracy improves when upwelling occurs for when parameters are met for one or more days, potentially indicating overestimation (Fig.5). Similarly, non-spatial dataset also sees an improved accuracy when parameters are met for one or more days (Fig. 6). Wind in the North-South direction (wind_v) showcases to be the most important feature between all datasets and each parameter, from there it differs if sst or u_wind (West-East) is the next more important feature (Fig. 5 and 6)
 
 ![Alt text](Figures/Figure5.png)
 ###### Figure 5: Results of Random Forest on Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
@@ -87,7 +87,7 @@
 ###### Figure 6: Results of Random Forest on Non-Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
 
 ### Neural Network:
-##### Only one neural network was able to work properly after several attempts to get neural network to work for each one. Of these four, only non-spatial and on the duration of one or more days of upwelling paramenets being met, showcases results (Fig. 8). This neural network, just like the others, still needs some work, as the FalsePositives are extremely high, but the TruePositives is valid as we do expect more non-upwelling events to be predicted than upwelling. Another interesting thing to note, is that between spatial and non-spatial dataset, the 3+ days accuracy is better in the spatial dataset, while 1+ days from the non-spatial dataset is better (Fig. 7 and Fig. 8). This brings into question if the neural network can determine that the spatial, 1 or more days of upwelling is overestimating.
+##### Only one neural network was able to work properly after several attempts to get one to work for each dataset and parameter. Of these four, only non-spatial and one or more days of upwelling paramenets being met, showcases results (Fig. 8). This neural network, just like the others, still needs some work, as the FalsePositives are extremely high, but the TruePositives is valid as we do expect more non-upwelling events to be predicted than upwelling. Another interesting thing to note, is that between spatial and non-spatial dataset, the 3+ days accuracy is better in the spatial dataset, while 1+ days from the non-spatial dataset is better (Fig. 7 and Fig. 8). This brings into question if the neural network can determine that the spatial, 1 or more days of upwelling, is overestimating.
 
 ![Alt text](Figures/Figure7.png)
 ###### Figure 7: Results of Neural Network on Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
@@ -96,7 +96,7 @@
 ###### Figure 8: Results of Neural Network on Non-Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
 
 ### Logistic Regression
-##### Logistic regression was utilized due to the issues encountered with the neural network, and primarily focuses on the 3+ days data set, since neither datasets, spatially or non-spatially, were able to generate an accurate model. Results for both days are similar but slightly differ in the sense that the non-spatial sees a higher TruePositive and FalseNegatives (Fig. 9 and Fig. 10). What's interesting to note is that the FalsePositives for both datasets are still extremely high and indicates that more times upwelling is said to have happened but is actually not.
+##### Logistic regression was utilized due to the issues encountered with the neural network, and primarily focuses on the 3+ days data set, since neither datasets, spatially or non-spatially, were able to generate an accurate model. Results for both days are similar but slightly differ in that the non-spatial sees a higher TruePositive and FalseNegatives (Fig. 9 and Fig. 10). What's interesting to note is that the FalsePositives for both datasets are still extremely high and indicates that there are more times where upwelling is said to have happened but actually didn't.
 
 ![Alt text](Figures/Figure9.png)
 ###### Figure 9: Results of Neural Network on Saptial dataset, only showcasing for when 3+ days have passed. 
@@ -105,7 +105,7 @@
 ###### Figure 10: Results of Neural Network on Non-Saptial dataset, only showcasing for when 3+ days have passed
 
 ## Visual Representation
-##### When plotting 3 or more days of upwelling parameters being met against sea-surface temperatures, it can be notes that a decline in sst follows (Fig. 11). This is important to note as this does verify that the definition applied to the upwelling parameter is at least accurate in terms of sst responses, slightly showcasing sst decreasing is a result of upwelling occurrence.
+##### When plotting 3 or more days of upwelling parameters being met against sea-surface temperatures, it can be noted that a decline in sst follows (Fig. 11). This is important to note as this does verify that the definition applied to the upwelling parameter is at least accurate in terms of sst responses, showcasing sst decreasing is a result of upwelling occurrence.
 
 ![Alt text](Figures/Figure11.png)
 ###### Figure 11: The occurrence of upwelling occurring for three or more days plotted against sea-surface temperatures to check for the expected trend of sst decreasing as upwelling occurs.
