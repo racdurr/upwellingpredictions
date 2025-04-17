@@ -5,7 +5,7 @@
 
 
 # Background
-Increased carbon dioxide emissions has caused global atmospheric temperatures to rise, which has led to various climatic shifts. Some of these shifts include changes in weather patterns and rising sea-surface temperatures and are expected to get worse (Fig. 1). It is also expected that upwelling will increase in the future, which can result in more primary productivity due to upwelling bringing cold nutrient-rich waters to the surface (Fig. 2) [2, 3]. However, this primary productivity can result in algal blooms that can potentially become hazardous to local communities and marine life (Fig. 3) [4]. Understanding the impacts of potential increased algal bloom frequency is important to fishing communities and commercial fisheries since they can impact the overall health of the ecosystem [1].
+##### Increased carbon dioxide emissions has caused global atmospheric temperatures to rise, which has led to various climatic shifts. Some of these shifts include changes in weather patterns and rising sea-surface temperatures and are expected to get worse (Fig. 1). It is also expected that upwelling will increase in the future, which can result in more primary productivity due to upwelling bringing cold nutrient-rich waters to the surface (Fig. 2) [2, 3]. However, this primary productivity can result in algal blooms that can potentially become hazardous to local communities and marine life (Fig. 3) [4]. Understanding the impacts of potential increased algal bloom frequency is important to fishing communities and commercial fisheries since they can impact the overall health of the ecosystem [1].
 
 ###### Figure 1: Projected annual carbon emissions and projected global atmospheric temperatures. Highlights how atmospheric temperatures are expected to continue to increase, indicating potential further shifts in climatic feedback. image source [7]
 ###### Figure 2: Areas of coastal upwelling zones. image source [5]
@@ -27,24 +27,43 @@ Increased carbon dioxide emissions has caused global atmospheric temperatures to
 
 # Methods
 ##### Interpolation Method: Spline Interpolation
-##### Machine Learning Method: Random Forest
-##### Other: Logistic Regression + Plots
+##### Machine Learning Method: Random Forest and Neural Network
+##### Extra: Logistic Regression + Plots
+
+## Parameters Used
+##### Upwelling occurs when there are strong offshore winds and for the California Current System, those are northerly/northwesterly/equatorward winds and events are typically 1-2 weeks [3]. For CCS, it also causes cold nutrient-rich bottom waters to be brought to the surface, hence we can use sea-surface temperatures and chlorophyll-a data. Unfortunately, chl-a datasets were too large for download (2019 MacBook Pro was used) and when a .csv file was downloadable, it was on a much shorter time scale than wind and SST datasets, as well as still too computationally heavy. 
+
+##### Parameters are based on what is known to cause upwelling in the CCS as well as Barrow Canyon, AK to help refine the upwelling definition in the code (DatasetPreparation.ipynb). Upwelling in Barrow occurs when winds are greater than 4 m/s, last for more than 12 hours and are easterly winds, strong upwelling events occur with >10 m/s that last for 4 or more days. Together, upwelling was defined using positive u wind (meridional, west-east (x) direction), negative v wind (zonal, north-south (y) direction), wind speed > 5 m/s and if SST decreased. U and v wind were defined based on that positive u wind met wind from the west, and negative v wind indicating winds from the north (Fig. 4). 
+
+##### These parameters were defined on a 1+ and 3+ day scale. 1+ day will overestimate the true number of actual upwelling events occurring, while 3+ day scale will likely overestimate but not as much as the 1+ day. This was also not to limit events that are longer than 14 days as with upwelling there are lag responses. Meaning that non-favorable upwelling winds will need to persist almost as long as what would result in upwelling, but if they were to reverse back to favorable upwelling winds in less than 6 hours, upwelling could still persist.
+
+###### Relative parameter used in code: 
+######     (u_wind > 0 and v_wind < 0 and wind_speed > 5 and SST_decrease == True)
+
+###### Note: did not use ekman_upwelling data in defining parameters but can still be used - upwelling is occurring when ekman_upwelling > 0, otherwise downwelling is occurring (ekman_upwelling < 0) [1]
 
 ## Dataset Preparation Code
     DatasetPreparation.ipynb
+    Datasets Created: wind_sst.csv, upwelling_spatial.csv and upwelling_nonspatial.csv
 
 ## Upwelling Predictions Code
-
+    UpwellingPredictions.ipynb
+    
+## Logistic Regression Code
+    Logistic_CorrelationPlot.ipynb
 
 ## Visual Representation Code
+    ImageAnalysis.ipynb
+    # just a basic timeseries plot that showcases the upwelling = 1 vs SST
 
+# Results and Summary
 
-
-
-# Summary
 
 # Notes 
-
+##### 1. A 2019 MacBook Pro was used (took up about 30 GB of computer storage)
+##### 2. All code was done in Jupyter Lab (through Anaconda extension)
+##### 3. Data is very computationally heavy, recommend a computer with more RAM than what was used
+##### 4. Neural Network may showcase a potential dataset processing error
 
 # Rerefences
 
