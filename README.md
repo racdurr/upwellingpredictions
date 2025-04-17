@@ -65,7 +65,23 @@
     # just a basic timeseries plot that showcases the upwelling = 1 vs SST
 
 # Results and Summary
+![Alt text](Figures/Figure5.png)
+###### Figure 5:
 
+![Alt text](Figures/Figure6.png)
+###### Figure 6:
+
+![Alt text](Figures/Figure7.png)
+###### Figure 7:
+
+![Alt text](Figures/Figure8.png)
+###### Figure 8:
+
+![Alt text](Figures/Figure9.png)
+###### Figure 9:
+
+![Alt text](Figures/Figure10.png)
+###### Figure 10:
 
 # Notes 
 ##### 1. A 2019 MacBook Pro was used (took up about 30 GB of computer storage)
