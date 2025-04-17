@@ -7,13 +7,13 @@
 # Background
 ##### Increased carbon dioxide emissions has caused global atmospheric temperatures to rise, which has led to various climatic shifts. Some of these shifts include changes in weather patterns and rising sea-surface temperatures and are expected to get worse (Fig. 1). It is also expected that upwelling will increase in the future, which can result in more primary productivity due to upwelling bringing cold nutrient-rich waters to the surface (Fig. 2) [2, 3]. However, this primary productivity can result in algal blooms that can potentially become hazardous to local communities and marine life (Fig. 3) [4]. Understanding the impacts of potential increased algal bloom frequency is important to fishing communities and commercial fisheries since they can impact the overall health of the ecosystem [1].
 
-![Alt text](Figure1.png)
+![Alt text](Figures/Figure1.png)
 ###### Figure 1: Projected annual carbon emissions and projected global atmospheric temperatures. Highlights how atmospheric temperatures are expected to continue to increase, indicating potential further shifts in climatic feedback. image source [7]
 
-![Alt text](Figure2.png)
+![Alt text](Figures/Figure2.png)
 ###### Figure 2: Areas of coastal upwelling zones. image source [5]
 
-![Alt text](Figure3.png)
+![Alt text](Figures/Figure3.png)
 ###### Figure 3: Diagram briefly showcasing how upwelling occurs and how it influences primary productivity leading to algal blooms. image source [3]
 
 # Data
@@ -47,7 +47,7 @@
 
 ###### Note: did not use ekman_upwelling data in defining parameters but can still be used - upwelling is occurring when ekman_upwelling > 0, otherwise downwelling is occurring (ekman_upwelling < 0) [1]
 
-![Alt text](Figure4.png)
+![Alt text](Figures/Figure4.png)
 ###### Figure 4: Zonal (v in y direction) vs Meridonal (u in x direction) wind, how to define northwesterly/eqautorward winds for the upwelling parameter [6]
 
 ## Dataset Preparation Code
