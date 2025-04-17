@@ -24,14 +24,13 @@
         35º N to 40º N, -125º W to -123º W
             California Current System
 ##### Wind (time, lat, lon, u_wind, v_wind, ekman_upwelling)
-    File that was downloaded from the link: windsproducts.csv
-    Link to data page: https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQCwindproducts1day.html?wind_u%5B(2025-04-09T12:00:00Z)%5D%5B(10.0)%5D%5B(44.500045):(32.166724)%5D%5B(-131.166715):(-118.833394)%5D,wind_v%5B(2025-04-09T12:00:00Z)%5D%5B(10.0)%5D%5B(44.500045):(32.166724)%5D%5B(-131.166715):(-118.833394)%5D&.draw=vectors&.vars=longitude%7Clatitude%7Cwind_u%7Cwind_v&.color=0x000000&.bgColor=0xffccccff
+###### File that was downloaded ([link](https://coastwatch.pfeg.noaa.gov/erddap/griddap/erdQCwindproducts1day.html?wind_u%5B(2025-04-09T12:00:00Z)%5D%5B(10.0)%5D%5B(44.500045):(32.166724)%5D%5B(-131.166715):(-118.833394)%5D,wind_v%5B(2025-04-09T12:00:00Z)%5D%5B(10.0)%5D%5B(44.500045):(32.166724)%5D%5B(-131.166715):(-118.833394)%5D&.draw=vectors&.vars=longitude%7Clatitude%7Cwind_u%7Cwind_v&.color=0x000000&.bgColor=0xffccccff)): [windproducts.csv](https://github.com/racdurr/upwellingpredictions/blob/main/DownloadedDataFiles/windproducts.csv)
 ##### Sea-Surface Temperature (time, lat, lon, sst)
-    File that was downloaded from the link: sst.csv
-    Link to data page: https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg_LonPM180.html 
+###### File that was downloaded ([link](https://coastwatch.pfeg.noaa.gov/erddap/griddap/ncdcOisst21Agg_LonPM180.html )): [sst.csv](https://github.com/racdurr/upwellingpredictions/blob/main/DownloadedDataFiles/sst.csv)
 
 # Methods
 ##### Interpolation Method: Spline Interpolation
+###### Why? Spline can handle the type of data while smoothing. Kriging could work, but most importantly, SST and wind see a gradual change with longitude and latitude unlike things like topography
 ##### Machine Learning Method: Random Forest and Neural Network
 ##### Extra: Logistic Regression + Plots
 
@@ -51,40 +50,68 @@
 ###### Figure 4: Zonal (v in y direction) vs Meridonal (u in x direction) wind, how to define northwesterly/eqautorward winds for the upwelling parameter [6]
 
 ## Dataset Preparation Code
-    DatasetPreparation.ipynb
-    Datasets Created: wind_sst.csv, upwelling_spatial.csv and upwelling_nonspatial.csv
+##### [DatasetPreparation.ipynb](https://github.com/racdurr/upwellingpredictions/blob/main/Code/DatasetPreparation.ipynb)
+##### Datasets Created: [wind_sst.csv](https://github.com/racdurr/upwellingpredictions/blob/main/CodeGeneratedDataFiles/wind_sst.csv), [upwelling_spatial.csv](https://github.com/racdurr/upwellingpredictions/blob/main/CodeGeneratedDataFiles/upwelling_spatial.csv) and [upwelling_nonspatial.csv](https://github.com/racdurr/upwellingpredictions/blob/main/CodeGeneratedDataFiles/upwelling_nonspatial.csv)
+
+##### This juppyter notebook includes several aspects and is grouped by:
+###### 1. Uploading Wind Dataset + Spline Interpolation
+###### 2. Uploading SST Dataset + Spline Interpolation
+###### 3. Merging the two Interpolated Datasets
+###### 4. Defining Upwelling (Spatially and Non-Spatially) - this is where sst_decrease, upwelling1day and upwelling3day columns are created, as well as where upwelling_spatial and upwelling_nonspatial csv files are generated
 
 ## Upwelling Predictions Code
-    UpwellingPredictions-2.ipynb
-    
+##### [UpwellingPredictions.ipynb](https://github.com/racdurr/upwellingpredictions/blob/main/Code/UpwellingPredictions.ipynb)
+##### This juppyter notebook includes several aspects and is grouped by:
+###### 1. Random Forest and Neural Network with Spatial Data
+###### 2. Random Forest and Neural Network with Non-Spatial Data 
+###### 3. Summary of Results for both ML Methods and Spatial and Non-Spatial Data
+
 ## Logistic Regression Code
-    Logistic_CorrelationPlot-2.ipynb
+##### [Logistic_CorrelationPlot.ipynb](https://github.com/racdurr/upwellingpredictions/blob/main/Code/Logistic_CorrelationPlot.ipynb)
+##### This juppyter notebook includes several aspects and is grouped by:
+###### 1. Logistic Regression with Correlation Matrix for Spatial Data
+###### 2. Logistic Regression with Correlation Matrix for Non-Spatial Data
 
 ## Visual Representation Code
-    ImageAnalysis.ipynb
-    # just a basic timeseries plot that showcases the upwelling = 1 vs SST
+##### [ImageAnalysis.ipynb](https://github.com/racdurr/upwellingpredictions/blob/main/Code/ImageAnalysis.ipynb)
+###### Timeseries plot showcasing the occurrence of upwelling over 3 or more days against sea-surface temperatures
 
 # Results and Summary
+### Random Forest
+##### Results between spatial and non-spatial datasets in the random forest, slightly vary. From the spatial dataset, accuracy improves when upwelling occurs for when parameters are met for one or more days, potentially indicating overestimation (Fig.5). Similarly, non-spatial dataset also sees an improved accuracy when parameters are met for one or more days (Fig. 6). Wind in the North-South direction (wind_v) showcases to be the most important feature of all datasets and each parameter, from there it differs if sst or or u wind is the next more important feature (Fig. 5 and 6)
+
 ![Alt text](Figures/Figure5.png)
-###### Figure 5:
+###### Figure 5: Results of Random Forest on Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
 
 ![Alt text](Figures/Figure6.png)
-###### Figure 6:
+###### Figure 6: Results of Random Forest on Non-Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
+
+### Neural Network:
+##### Only one neural network was able to work properly after several attempts to get neural network to work for each one. Of these four, only non-spatial and on the duration of one or more days of upwelling paramenets being met, showcases results (Fig. 8). This neural network, just like the others, still needs some work, as the FalsePositives are extremely high, but the TruePositives is valid as we do expect more non-upwelling events to be predicted than upwelling. Another interesting thing to note, is that between spatial and non-spatial dataset, the 3+ days accuracy is better in the spatial dataset, while 1+ days from the non-spatial dataset is better (Fig. 7 and Fig. 8). This brings into question if the neural network can determine that the spatial, 1 or more days of upwelling is overestimating.
 
 ![Alt text](Figures/Figure7.png)
-###### Figure 7:
+###### Figure 7: Results of Neural Network on Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
 
 ![Alt text](Figures/Figure8.png)
-###### Figure 8:
+###### Figure 8: Results of Neural Network on Non-Saptial dataset, showcasing for when both 1+ or 3+ days have passed. 
+
+### Logistic Regression
+##### Logistic regression was utilized due to the issues encountered with the neural network, and primarily focuses on the 3+ days data set, since neither datasets, spatially or non-spatially, were able to generate an accurate model. Results for both days are similar but slightly differ in the sense that the non-spatial sees a higher TruePositive and FalseNegatives (Fig. 9 and Fig. 10). What's interesting to note is that the FalsePositives for both datasets are still extremely high and indicates that more times upwelling is said to have happened but is actually not.
 
 ![Alt text](Figures/Figure9.png)
-###### Figure 9:
+###### Figure 9: Results of Neural Network on Saptial dataset, only showcasing for when 3+ days have passed. 
 
 ![Alt text](Figures/Figure10.png)
-###### Figure 10:
+###### Figure 10: Results of Neural Network on Non-Saptial dataset, only showcasing for when 3+ days have passed
+
+## Visual Representation
+##### When plotting 3 or more days of upwelling parameters being met against sea-surface temperatures, it can be notes that a decline in sst follows (Fig. 11). This is important to note as this does verify that the definition applied to the upwelling parameter is at least accurate in terms of sst responses, slightly showcasing sst decreasing is a result of upwelling occurrence.
 
 ![Alt text](Figures/Figure11.png)
-###### Figure 11:
+###### Figure 11: The occurrence of upwelling occurring for three or more days plotted against sea-surface temperatures to check for the expected trend of sst decreasing as upwelling occurs.
+
+## Comments
+##### In general, a neural network may not be a good fit for predicting upwelling events but random forests and logistic regressions at least showcase potential. I believe refining the parameters could help, as well as bringing more data and potentially chlorophyll-a concentrations or nutrients to bring another response indicator to determine if upwelling is occurring. However, chl-a data can be either limited or computationally heavy due to high resolution, while nutrient data is relatively hard to come by and tends to not have the spatial coverage like sst and wind data.
 
 # Notes 
 ##### 1. A 2019 MacBook Pro was used (took up about 30 GB of computer storage)
