@@ -83,6 +83,9 @@
 ![Alt text](Figures/Figure10.png)
 ###### Figure 10:
 
+![Alt text](Figures/Figure11.png)
+###### Figure 11:
+
 # Notes 
 ##### 1. A 2019 MacBook Pro was used (took up about 30 GB of computer storage)
 ##### 2. All code was done in Jupyter Lab (through Anaconda extension)
