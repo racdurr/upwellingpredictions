@@ -47,10 +47,10 @@
     Datasets Created: wind_sst.csv, upwelling_spatial.csv and upwelling_nonspatial.csv
 
 ## Upwelling Predictions Code
-    UpwellingPredictions.ipynb
+    UpwellingPredictions-2.ipynb
     
 ## Logistic Regression Code
-    Logistic_CorrelationPlot.ipynb
+    Logistic_CorrelationPlot-2.ipynb
 
 ## Visual Representation Code
     ImageAnalysis.ipynb
